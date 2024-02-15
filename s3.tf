@@ -57,16 +57,23 @@ resource "aws_s3_bucket_policy" "example_bucket_policy" {
   bucket = aws_s3_bucket.example_bucket.id
 
   policy = jsonencode({
-    Version = "2012-10-17"
+    Version = "2012-10-17",
     Statement = [
       {
-        Sid       = "mine2"
-        Effect    = "Allow"
-        Principal = "*"
-        Action    = ["s3:GetObject"]
-        Resource  =  ["arn:aws:s3:::${aws_s3_bucket.example_bucket.bucket}/*"]
-      }
-    ]
+        Sid       = "PublicReadGetObject",
+        Effect    = "Allow",
+        Principal = "*",
+        Action    = ["s3:GetObject"],
+        Resource  = ["arn:aws:s3:::${aws_s3_bucket.example_bucket.bucket}/*"],
+      },
+      {
+        Sid       = "PublicReadGetObjectCustom",
+        Effect    = "Allow",
+        Principal = "*",
+        Action    = ["s3:GetObject"],
+        Resource  = ["arn:aws:s3:::${aws_s3_bucket.example_bucket.bucket}/*"],
+      },
+    ],
   })
 }
 
