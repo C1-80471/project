@@ -60,7 +60,7 @@ resource "aws_s3_bucket_policy" "example_bucket_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid       = "PublicReadGetObject"
+        Sid       = "mine2"
         Effect    = "Allow"
         Principal = "*"
         Action    = ["s3:GetObject"]
